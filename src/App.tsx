@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 
 function App() {
@@ -36,7 +35,7 @@ function App() {
   // age = 12;
   /*-------------------------------- */
 
-  // let printName: (name:string) =>void; // return undefinde
+  // let printName: (name:string) => void; // return undefinde
   // let printFName: (name:string) => never; // not return anything
 
   /*-------------------------------- */
@@ -77,6 +76,8 @@ function App() {
   // console.log('====================================');
   // console.log(addAll(10,12,11.2, +true));
   // console.log('====================================');
+
+  
 
   /*----------------------Typw Alias ------------------------------------ */
 
@@ -324,27 +325,249 @@ function App() {
 
 // class User {
 //   msg: () => string;
-//   constructor(private username: string, protected salary: number,public readonly address: string) {
+//   constructor(private _username: string, protected salary: number,public readonly address: string) {
 //     this.msg = function () {
-//       return `Hello ${this.username} Your Salary Is ${this.salary}`;
+//       return `Hello ${this._username} Your Salary Is ${this.salary}`;
 //     }
 //   }
 //   sayMsg() {
-//     return `Hello ${this.username} Your Salary Is ${this.salary}`;
+//     return `Hello ${this._username} Your Salary Is ${this.salary}`;
+//   }
+//   get  username():string{
+//     return this._username
+//   }
+//   set username(value:string){
+//     this._username = value;
 //   }
 // }
 
 // let userOne = new User("Elzero", 6000, "Cairo");
 
-// // console.log(userOne.username);
-// // console.log(userOne.salary);
+// console.log(userOne.username);
 // console.log(userOne.msg());
 // console.log(userOne.sayMsg());
 
-  /*----------------------------------------------------------------------------- */
+  /*---------------------------------Class Static-------------------------------- */
+  /*
+  Class
+  - Static Members
+  --- Don't Use "name, length, call"
+*/
+  // class User {
+  //   private static ceated: number = 0;
+  //  static getCount(): void {
+  //     console.log(this.ceated);
+  //   }
+  //   constructor(public username:string){
+  //     User.ceated++;
+  //   }
+  // }
+  // let u1 = new User("obada");
+  // let u2 = new User("obada");
+  // let u3 = new User("obada");
+  // User.getCount() 
   
+  /*------------------------------------Implement Iterface----------------------- */
+  //     interface Setting{
+  //       them: string;
+  //       font: string;
+  //       save: ()=> void
+  //     }
+  //     class User implements Setting{
+  //       constructor(public them:string, public font: string){}
+  //       save(): void{
+  //         console.log("obada");
+  //       }
+  //       update(): void{
+  //         console.log("Update");
+          
+  //       }
+  //     }
+  //     let useOne = new User("obada","oo")
+  //     useOne.save()
+
+  /*-----------------------------Abstract---------------------------------------- */
+
+  // abstract class Food{
+  //   constructor(public title:string){}
+  //   abstract getCookingTime() : void;
+  // }
+  // class Pizza extends Food {
+  //   constructor(title:string,price:number){
+  //   super(title)
+
+  //   }
+  //   getCookingTime(): void {
+  //     console.log("obada");
+      
+  //   }
+  // }
+  // let one = new Pizza("omar",22);
+  // console.log(one.title);
   
-  /*----------------------------------------------------------------------------- */
+
+
+
+ /*--------------------------Polymorphism And Method Override------------------- */
+
+ /*
+  Class
+  - Polymorphism & Method Override
+
+  - Polymorphism
+  --- Classes Have The Same Methods But Different Implementations
+
+  - Method Override
+  --- Allowing Child Class To Provide Implementation Of A Method In Parent Class
+  --- A Method In Child Class Must Have Same Name As Parent Class
+
+  --- noImplicitOverride
+*/
+
+    // class Player {
+    //   constructor(public name: string){};
+    //   attack(): void {
+    //     console.log("attacking Now");
+    //   }
+    // }
+    // class Amazon extends Player{
+    //   constructor(name: string, public spears: number){
+    //     super(name);
+    //   }
+    //   override attack(): void{
+    //     console.log("attacking spears");
+    //     this.spears--;
+    //   }
+    // }
+    
+    // class Barbarian extends Player{
+    //   constructor(name: string, public axe: number){
+    //     super(name);
+
+    //   }
+    //   override attack(): void{
+    //     super.attack()
+    //     console.log("attacking spears");
+    //     this.axe--;
+    //   }
+    // }
+    // let b1 = new Barbarian("obada", 22);
+    // console.log(b1.name);
+    // b1.attack();
+    // console.log(b1.axe);
+    
+    
+
+    /*------------------------Generics--------------------- */
+    /*
+  Generics
+  - Help Write A Reusable Code
+  - Allow To Pass Type As A Parameter To Another Type
+  - You Will Be Able To Deal With Multiple Types Without Using ": Any Type"
+  - We Can Create:
+  --- Generic Classes
+  --- Generic Functions
+  --- Generic Methods
+  --- Generic Interfaces
+*/
+    // function returnNumber(val : number):number{
+    //   return val
+    // }
+    // function returnString(val : string):string{
+    //   return val
+    // }
+    // function returnBoolean(val : boolean):boolean{
+    //   return val
+    // }
+    // function returntype<Generics>(val: Generics): Generics{
+    //   return val
+    // }
+    // console.log(returnNumber(199));
+    // console.log(returnString("obada"));
+    // console.log(returnBoolean(true));
+    // console.log(returntype<number>(555));
+    // console.log(returntype<string>("true"));
+    // console.log(returntype<[]>([]));
+
+    
+    /*----------------------------------------------------- */
+    /*
+  Generics
+  - Arrow Function
+  - Multiple Types
+  - Discussion
+*/
+
+// function returnType<T>(val: T): T {
+//   return val;
+// }
+
+// console.log(returnType<number>(100));
+// console.log(returnType<string>("Elzero"));
+
+// const returnTypeArrowSyntax = <T extends {}>(val: T): T => val;
+
+// console.log(returnTypeArrowSyntax<number>(100));
+// console.log(returnTypeArrowSyntax<string>("Elzero"));
+
+// function testType<T>(val: T): string {
+//   return `The Value Is ${val} And Type Is ${typeof val}`;
+// }
+
+// console.log(testType<number>(100));
+// console.log(testType<string>("Elzero"));
+
+// function multipleTypes<T, S>(valueOne: T, valueTwo: S): string {
+//   return `The First Value Is ${valueOne} And Second Value ${valueTwo}`;
+// }
+
+// console.log(multipleTypes<string, number>("Osama", 100));
+// console.log(multipleTypes<string, boolean>("Elzero", true));
+
+/*-------------------------------Generics Classes--------------------------- */
+
+  // class User<T = String>{
+  //   constructor(public value: T){}
+  //   show(msg: T ): void {
+  //     console.log(`${msg} = ${this.value}`);
+  //   }
+  //   }
+  
+  //   let userOne = new User<string>("obada");
+  //   console.log(userOne.value);
+  //   userOne.show("Message")
+  //   let userTow = new User<string |number>(4);
+  //   console.log(userTow.value);
+  //   userOne.show("Message")
+    
+
+  /*-----------------Generics Classes And Interfaces-------------------- */
+
+  // interface Book{
+  //   itemType: string;
+  //   title: string;
+  //   isbn: number
+  // }
+
+  // interface Game{
+  //   itemType: string;
+  //   title: string;
+  //   style: string;
+  //   pricw: string
+  // }
+
+  // class Collection<T>{
+  //   public data: T[] = [];
+  //   add(item: T) : void {
+  //     this.data.push(item)
+  //   }
+  // }
+  // let itemOne = new Collection<Book>();
+  // itemOne.add({itemType:"ssd",title:"ds",isbn:11})
+  // console.log(typeof itemOne.data);
+  
+
+
 
 
   return (
